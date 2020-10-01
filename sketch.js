@@ -9,6 +9,8 @@ var backgroundImg;
 
 var platform,log;
 
+var isReleased = false;
+
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
 }
@@ -39,9 +41,9 @@ function setup(){
 
     bird = new Bird(100,100);
 
-    log = new Log(150,150,100,PI/2);
+    //log = new Log(150,150,100,PI/2);
 
-    conn = new Chain(bird,log);
+    conn = new SlingShot(bird,{x:200,y:100});
 }
 
 function draw(){
@@ -66,6 +68,20 @@ function draw(){
 
     bird.display();
 
-    log.display();
+    //log.display();
     conn.display();
+}
+
+function mouseDragged(){
+
+    if(!isReleased){
+        Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY});
+    }
+}
+
+function mouseReleased(){
+
+    conn.fly();
+    isReleased = true;
+
 }

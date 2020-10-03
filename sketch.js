@@ -22,7 +22,7 @@ function setup(){
     
     ground = new Ground(600,height,1200,20)
 
-    platform = new Ground(100,305,300,200);
+    platform = new Ground(100,315,300,170);
 
     box1 = new Box(700,320,70,70);
     box2 = new Box(920,320,70,70);
@@ -39,11 +39,11 @@ function setup(){
     log4 = new Log(760,120,150, PI/7);
     log5 = new Log(870,120,150, -PI/7);
 
-    bird = new Bird(100,100);
+    bird = new Bird(50,80);
 
     //log = new Log(150,150,100,PI/2);
 
-    conn = new SlingShot(bird,{x:200,y:100});
+    conn = new SlingShot(bird,{x:200,y:60});
 }
 
 function draw(){

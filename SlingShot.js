@@ -29,6 +29,11 @@ class SlingShot{
         this.connection.bodyA = null;
 
     }
+    attach(body){
+
+        this.connection.bodyA = body;
+
+    }
 
     display(){
     

@@ -73,15 +73,20 @@ function draw(){
 }
 
 function mouseDragged(){
-
     if(!isReleased){
         Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY});
     }
 }
 
 function mouseReleased(){
-
     conn.fly();
     isReleased = true;
+}
 
+function keyPressed(){
+    if(keyCode == 32){
+        Matter.Body.setPosition(bird.body,{x:50,y:80});
+        conn.attach(bird.body);
+        isReleased = false;
+    }
 }

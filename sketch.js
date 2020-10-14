@@ -9,7 +9,10 @@ var backgroundImg;
 
 var platform,log;
 
-var isReleased = false;
+var onSling = 0;
+var launched = 1;
+
+var gameState = onSling;
 
 function preload() {
     backgroundImg = loadImage("sprites/bg.png");
@@ -39,7 +42,7 @@ function setup(){
     log4 = new Log(760,120,150, PI/7);
     log5 = new Log(870,120,150, -PI/7);
 
-    bird = new Bird(50,80);
+    bird = new Bird(200,60);
 
     //log = new Log(150,150,100,PI/2);
 
@@ -73,20 +76,20 @@ function draw(){
 }
 
 function mouseDragged(){
-    if(!isReleased){
+    if(gameState == onSling){
         Matter.Body.setPosition(bird.body,{x:mouseX,y:mouseY});
     }
 }
 
 function mouseReleased(){
     conn.fly();
-    isReleased = true;
+    gameState = launched;
 }
 
 function keyPressed(){
     if(keyCode == 32){
         Matter.Body.setPosition(bird.body,{x:50,y:80});
-        conn.attach(bird.body);
-        isReleased = false;
+        //conn.attach(bird.body);
+        //isReleased = false;
     }
 }

@@ -15,14 +15,14 @@ var launched = 1;
 var gameState = onSling;
 
 function preload() {
-    backgroundImg = loadImage("sprites/bg.png");
+    timeFormatting();
 }
 
 function setup(){
     var canvas = createCanvas(1200,400);
+    
     engine = Engine.create();
     world = engine.world;
-    
     ground = new Ground(600,height,1200,20)
 
     platform = new Ground(100,315,300,170);
@@ -50,7 +50,15 @@ function setup(){
 }
 
 function draw(){
-    background(backgroundImg);
+    if(backgroundImg){
+        background(backgroundImg);
+    }else{
+        background("white");
+    }
+
+    fill("white");
+    textSize(30);
+    text("Score:",1100,100)
     Engine.update(engine);
 
     box1.display();
@@ -92,4 +100,21 @@ function keyPressed(){
         //conn.attach(bird.body);
         //isReleased = false;
     }
+}
+
+async function timeFormatting(){
+
+    timeZone = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
+    timeZone1 = await timeZone.json();
+    datetime = timeZone1.datetime;
+    hours = datetime.slice(11,13);
+    //onsole.log(hours+1);
+    //console.log(hours);
+    if(hours>=18 && hours<=6){
+        var bg = "sprites/bg.png";
+    }else{
+        var bg = "sprites/bg2.jpg";
+    }
+
+    backgroundImg = loadImage(bg);
 }
